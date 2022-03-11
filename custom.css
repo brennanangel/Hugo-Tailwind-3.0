@@ -1,0 +1,10 @@
+.customUtility {
+  display: block;
+  background-color: purple;
+}
+@layer utilities {
+  .customUtilityDirective {
+    display: block;
+    background-color: red;
+  }
+}

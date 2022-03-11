@@ -3,20 +3,29 @@
   "version": "1.0.0",
   "description": "Hugo & Tailwind CSS 3.0",
   "main": "index.js",
-  "dependencies": {},
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.1",
     "autoprefixer": "^10.4.2",
     "concurrently": "^7.0.0",
     "postcss": "^8.4.6",
     "postcss-cli": "^9.1.0",
-    "tailwindcss": "^3.0.22"
+    "postcss-import": "^14.0.2",
+    "tailwindcss": "^0.0.0-insiders.f980ca4"
   },
   "scripts": {
-    "start": "concurrently npm:watch:*",
-    "watch:tw": "tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --watch",
+    "start": "postcss ./assets/css/main.css -o ./assets/dist/postcssstyles.css && tailwindcss -i ./assets/dist/postcssstyles.css -o ./assets/dist/tailwind.css && concurrently npm:watch:*",
+    "startp": "concurrently npm:watchp:*",
+    "watch:postcss": "tailwindcss -i ./assets/css/main.css -o ./assets/dist/tailwind.css --watch",
+    "watch:tw": "tailwindcss -i ./assets/css/main.css -o ./assets/dist/tailwind.css --watch",
+    "tw": "tailwindcss -i ./assets/main.css -o ./assets/dist/tailwind.css",
+    "postcss:build": "postcss ./assets/css/main.css -o ./assets/dist/postcssstyles.css",
+    "postcss:watch": "postcss assets/css/main.css --dir dist --watch",
+    "watchp:hugo": "hugo server",
     "watch:hugo": "hugo server",
-    "build": "hugo --minify"
+    "watch0:hugo": "hugo server",
+    "build": "hugo --minify",
+    "start0": "concurrently npm:watch0:*",
+    "watch0:tw": "tailwindcss -i ./assets/css/main.css -o ./assets/css/style.css --watch"
   },
   "repository": {
     "type": "git",
